@@ -17,6 +17,7 @@ public class Scheduler extends TimerTask {
     private Map<String, String> dollarCotation;
     private DateFormat          simpleDateFormat;
     private int                 count;
+    private int                 maxRequests;
 
     private final String KEY    = "b885cfe1";
     private final String URL    = "https://api.hgbrasil.com/finance";
@@ -24,19 +25,25 @@ public class Scheduler extends TimerTask {
     @SuppressWarnings("all")
     public Scheduler() {
         this.request = new HttpRequest(URL + "?key=" + KEY, "GET");
-        this.factory = new CSVFactory("C:\\Users\\Nescara\\Desktop");
+        this.factory = new CSVFactory("C:\\Users\\Nescara\\Desktop\\Dollar_cotation_" + new SimpleDateFormat("yyyy_MM_dd").format(new Date()) + ".csv");
         this.simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
         factory.setHeaders("Moeda", "Valor de compra", "Valor de venda", "variação", "Data/Hora da cotação");
     }
 
+    public Scheduler(int maxRequests) {
+        this();
+        this.maxRequests = maxRequests;
+    }
+
     @Override
     public void run() {
-        if(count++ == 10)
+        if(maxRequests > 0 && count++ == maxRequests) {
             System.exit(1);
+        }
 
         try {
-            dollarCotation = execute(request);
+            dollarCotation = getDollarCotation(request);
 
             if(dollarCotation == null)
                 return;
@@ -56,19 +63,19 @@ public class Scheduler extends TimerTask {
     }
 
     @SuppressWarnings("unchecked")
-    private Map<String, String> execute(HttpRequest request) throws IOException {
+    private Map<String, String> getDollarCotation(HttpRequest request) throws IOException {
         request.fireRequest();
 
         System.out.println(request.getResponse().toString());
 
-        if(request.getResponse().http_code != 200)
+        if (request.getResponse().http_code != 200)
             return null;
 
         String s = request.getResponse().response_body;
         UOLResponse parsed = new Gson().fromJson(s, UOLResponse.class);
 
-        if(parsed.results.currencies.get("USD") instanceof Map)
-            return (Map<String, String>)parsed.results.currencies.get("USD");
+        if (parsed.results.currencies.get("USD") instanceof Map)
+            return (Map<String, String>) parsed.results.currencies.get("USD");
 
         return null;
     }
