@@ -49,12 +49,11 @@ public class Scheduler extends TimerTask {
                 return;
 
             factory.addRecord(
-                    dollarCotation  .get("name"),
-                    dollarCotation  .get("buy"),
-                    dollarCotation  .get("sell"),
-                    dollarCotation  .get("variation"),
-                    simpleDateFormat.format(new Date())
-
+                dollarCotation  .get("name"),
+                dollarCotation  .get("buy"),
+                dollarCotation  .get("sell"),
+                dollarCotation  .get("variation"),
+                simpleDateFormat.format(new Date())
             );
             factory.flush();
         } catch (IOException e) {
