@@ -14,9 +14,12 @@ public class Scheduler extends TimerTask {
     private Map<String, String> dollarCotation;
     private int                 count;
 
+    private final String KEY    = "b885cfe1";
+    private final String URL    = "https://api.hgbrasil.com/finance";
+
     @SuppressWarnings("all")
     public Scheduler() {
-        this.request = new HttpRequest("https://api.hgbrasil.com/finance", "GET");
+        this.request = new HttpRequest(URL + "?key=" + KEY, "GET");
         this.factory = new CSVFactory("C:\\Users\\Nescara\\Desktop");
 
         factory.setHeaders("Moeda", "Valor de compra", "Valor de venda", "variação");
@@ -39,6 +42,7 @@ public class Scheduler extends TimerTask {
                     dollarCotation.get("sell"),
                     dollarCotation.get("variation")
             );
+            factory.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -77,5 +81,6 @@ class Results {
     Map<String, Object> currencies;
     Map<String, Map<String, String>> stocks;
     List<String> available_sources;
-    List<String> taxes;
+    Map<String, Object> bitcoin;
+    List<Object> taxes;
 }

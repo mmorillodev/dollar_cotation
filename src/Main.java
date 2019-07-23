@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         Timer timer = new Timer();
-        timer.schedule(new Scheduler(), 0, getMilis(30));
+        timer.schedule(new Scheduler(), 0, getMilis(2));
 
 //        new Scheduler().run();
     }
