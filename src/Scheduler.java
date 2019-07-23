@@ -3,6 +3,9 @@ import mine.utils.HttpRequest;
 import mine.utils.CSVFactory;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TimerTask;
@@ -13,6 +16,7 @@ public class Scheduler extends TimerTask {
     private CSVFactory          factory;
     private Map<String, String> dollarCotation;
     private int                 count;
+    private DateFormat          simpleDateFormat;
 
     private final String KEY    = "b885cfe1";
     private final String URL    = "https://api.hgbrasil.com/finance";
@@ -21,8 +25,9 @@ public class Scheduler extends TimerTask {
     public Scheduler() {
         this.request = new HttpRequest(URL + "?key=" + KEY, "GET");
         this.factory = new CSVFactory("C:\\Users\\Nescara\\Desktop");
+        this.simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-        factory.setHeaders("Moeda", "Valor de compra", "Valor de venda", "variação");
+        factory.setHeaders("Moeda", "Valor de compra", "Valor de venda", "variação", "Data/Hora da cotação");
     }
 
     @Override
@@ -37,10 +42,12 @@ public class Scheduler extends TimerTask {
                 return;
 
             factory.addRecord(
-                    dollarCotation.get("name"),
-                    dollarCotation.get("buy"),
-                    dollarCotation.get("sell"),
-                    dollarCotation.get("variation")
+                    dollarCotation  .get("name"),
+                    dollarCotation  .get("buy"),
+                    dollarCotation  .get("sell"),
+                    dollarCotation  .get("variation"),
+                    simpleDateFormat.format(new Date())
+
             );
             factory.flush();
         } catch (IOException e) {
