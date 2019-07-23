@@ -15,8 +15,8 @@ public class Scheduler extends TimerTask {
     private HttpRequest         request;
     private CSVFactory          factory;
     private Map<String, String> dollarCotation;
-    private int                 count;
     private DateFormat          simpleDateFormat;
+    private int                 count;
 
     private final String KEY    = "b885cfe1";
     private final String URL    = "https://api.hgbrasil.com/finance";
