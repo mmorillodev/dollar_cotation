@@ -36,7 +36,7 @@ public class Scheduler extends TimerTask {
     @Override
     public void run() {
         if((maxRequests > 0 && count == maxRequests)) {
-            System.exit(1);
+            super.cancel();
         }
 
         if(Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 9 || (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) >= 16 && Calendar.getInstance().get(Calendar.MINUTE) >= 15)) {
