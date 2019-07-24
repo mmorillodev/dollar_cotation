@@ -63,7 +63,7 @@ public class Scheduler extends TimerTask {
                 dollarCotation  .get("buy"),
                 dollarCotation  .get("sell"),
                 dollarCotation  .get("variation"),
-                simpleDateFormat.format(new Date())
+                simpleDateFormat.format(this.currentDate.getTime())
             );
             factory.flush();
         } catch (IOException e) {
