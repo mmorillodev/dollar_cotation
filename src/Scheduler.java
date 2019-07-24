@@ -5,10 +5,7 @@ import mine.utils.CSVFactory;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.TimerTask;
+import java.util.*;
 
 public class Scheduler extends TimerTask {
 
@@ -38,8 +35,13 @@ public class Scheduler extends TimerTask {
 
     @Override
     public void run() {
-        if(maxRequests > 0 && count++ == maxRequests) {
+        if((maxRequests > 0 && count == maxRequests)) {
             System.exit(1);
+        }
+
+        if(Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 9 || (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) >= 16 && Calendar.getInstance().get(Calendar.MINUTE) >= 15)) {
+            System.out.println("Market closed!");
+            return;
         }
 
         try {
@@ -64,6 +66,7 @@ public class Scheduler extends TimerTask {
     @SuppressWarnings("unchecked")
     private Map<String, String> getDollarCotation(HttpRequest request) throws IOException {
         request.fireRequest();
+        maxRequests++;
 
         System.out.println(request.getResponse().toString());
 
