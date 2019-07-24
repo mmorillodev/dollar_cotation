@@ -66,7 +66,7 @@ public class Scheduler extends TimerTask {
     @SuppressWarnings("unchecked")
     private Map<String, String> getDollarCotation(HttpRequest request) throws IOException {
         request.fireRequest();
-        maxRequests++;
+        count++;
 
         System.out.println(request.getResponse().toString());
 
