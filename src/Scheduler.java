@@ -13,11 +13,17 @@ public class Scheduler extends TimerTask {
     private CSVFactory          factory;
     private Map<String, String> dollarCotation;
     private DateFormat          simpleDateFormat;
+    private Calendar            currentDate;
     private int                 count;
     private int                 maxRequests;
 
-    private final String KEY    = "b885cfe1";
-    private final String URL    = "https://api.hgbrasil.com/finance";
+    private final String KEY;
+    private final String URL;
+
+    {
+        KEY = "b885cfe1";
+        URL = "https://api.hgbrasil.com/finance";
+    }
 
     @SuppressWarnings("all")
     public Scheduler() {
@@ -39,7 +45,9 @@ public class Scheduler extends TimerTask {
             super.cancel();
         }
 
-        if(Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 9 || (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) >= 16 && Calendar.getInstance().get(Calendar.MINUTE) >= 15)) {
+        this.currentDate = Calendar.getInstance();
+
+        if(currentDate.get(Calendar.HOUR_OF_DAY) < 9 || (currentDate.get(Calendar.HOUR_OF_DAY) >= 16 && currentDate.get(Calendar.MINUTE) >= 15)) {
             System.out.println("Market closed! " + Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + ":" + Calendar.getInstance().get(Calendar.MINUTE));
             return;
         }
