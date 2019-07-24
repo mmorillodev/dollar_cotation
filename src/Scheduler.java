@@ -22,7 +22,7 @@ public class Scheduler extends TimerTask {
     @SuppressWarnings("all")
     public Scheduler() {
         this.request            = new HttpRequest(URL + "?key=" + KEY, "GET");
-        this.factory            = new CSVFactory("C:\\Users\\Nescara\\Desktop\\Dollar_cotation_" + new SimpleDateFormat("yyyy_MM_dd").format(new Date()) + ".csv");
+        this.factory            = new CSVFactory("C:\\Users\\Nescara\\Desktop\\Dollar_cotation.csv");
         this.simpleDateFormat   = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
         factory.setHeaders("Moeda", "Valor de compra", "Valor de venda", "variação", "Data/Hora da cotação");

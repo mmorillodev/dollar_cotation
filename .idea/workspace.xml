@@ -28,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Scheduler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="68" column="13" selection-start-line="68" selection-start-column="13" selection-end-line="68" selection-end-column="13" />
+            <state relative-caret-position="289">
+              <caret line="24" column="94" selection-start-line="24" selection-start-column="94" selection-end-line="24" selection-end-column="94" />
             </state>
           </provider>
         </entry>
@@ -47,6 +47,7 @@
     <findStrings>
       <find>close</find>
       <find>dollar</find>
+      <find>newfil</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -188,8 +189,8 @@
     </entry>
     <entry file="jar://$PROJECT_DIR$/../MyJars.jar!/mine/utils/CSVFactory.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="69" column="47" lean-forward="true" selection-start-line="69" selection-start-column="47" selection-end-line="69" selection-end-column="47" />
+        <state relative-caret-position="214">
+          <caret line="131" column="19" selection-start-line="131" selection-start-column="19" selection-end-line="131" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -202,8 +203,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Scheduler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="68" column="13" selection-start-line="68" selection-start-column="13" selection-end-line="68" selection-end-column="13" />
+        <state relative-caret-position="289">
+          <caret line="24" column="94" selection-start-line="24" selection-start-column="94" selection-end-line="24" selection-end-column="94" />
         </state>
       </provider>
     </entry>
