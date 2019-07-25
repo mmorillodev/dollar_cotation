@@ -47,7 +47,7 @@ public class Scheduler extends TimerTask {
 
         this.currentDate = Calendar.getInstance();
 
-        if(currentDate.get(Calendar.HOUR_OF_DAY) < 9 || (currentDate.get(Calendar.HOUR_OF_DAY) >= 16 && currentDate.get(Calendar.MINUTE) >= 15)) {
+        if(currentDate.get(Calendar.HOUR_OF_DAY) < 9 || currentDate.get(Calendar.HOUR_OF_DAY) > 16 || (currentDate.get(Calendar.HOUR_OF_DAY) == 16 && currentDate.get(Calendar.MINUTE) >= 15)) {
             System.out.println("Market closed! " + Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + ":" + Calendar.getInstance().get(Calendar.MINUTE));
             return;
         }
