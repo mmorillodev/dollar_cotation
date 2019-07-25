@@ -20,14 +20,12 @@ public class Scheduler extends TimerTask {
     private final String KEY;
     private final String URL;
 
-    {
-        KEY = "b885cfe1";
-        URL = "https://api.hgbrasil.com/finance";
-    }
-
     @SuppressWarnings("all")
     public Scheduler() {
-        this.request            = new HttpRequest(URL + "?key=" + KEY, "GET");
+        this.KEY = "b885cfe1";
+        this.URL = "https://api.hgbrasil.com/finance";
+
+        this.request            = new HttpRequest(this.URL + "?key=" + this.KEY, "GET");
         this.factory            = new CSVFactory("C:\\Users\\Nescara\\Desktop\\Dollar_cotation.csv");
         this.simpleDateFormat   = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
